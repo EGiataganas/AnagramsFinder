@@ -1,5 +1,3 @@
-require 'sinatra'
-require 'json'
 require 'open-uri'
 
 class AnagramsFinder
@@ -36,12 +34,4 @@ class AnagramsFinder
 		end
 	end
 
-end
-
-af = AnagramsFinder.new
-get '/:word' do
-	result = {}
-	words = params[:word].split(",")
-	words.each {|w| result[w] = af.find_anagrams(w)}
-	result.to_json
 end
