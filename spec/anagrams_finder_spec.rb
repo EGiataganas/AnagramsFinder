@@ -3,7 +3,7 @@ require 'rspec'
 
 describe AnagramsFinder do
 
-	let (:anagram) {AnagramsFinder.new}
+	let (:anagram) {AnagramsFinder.new("shortwordlist.txt")}
 
 	it "should give the anagram of the word" do
 		expect(anagram.find_anagrams("cat")).to eq(["act"])

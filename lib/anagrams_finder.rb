@@ -2,10 +2,18 @@ require 'open-uri'
 
 class AnagramsFinder
 	
-	def initialize()
-		# f = File.new("wordlist.txt")
-		f = open('http://static.abscond.org/wordlist.txt')
-		@wordlist = f.readlines().map {|w| w.strip}
+	def initialize(filename = nil)
+		if filename.nil?
+			f = open('http://static.abscond.org/wordlist.txt')
+			@wordlist = f.readlines().map {|w| w.strip}
+		else
+			@wordlist = []
+			File.open(filename, 'r') do |fp|
+				while !fp.eof
+					@wordlist << fp.readline.chomp
+				end
+			end
+		end
 	end
 
 	def find_anagrams(word)
